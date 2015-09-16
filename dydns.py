@@ -2,7 +2,7 @@
 # -*- coding=utf-8 -*-
 # dnspod 动态更新IP的客户端
 
-import post,json,sys,urllib2,urllib,os,time
+import json,sys,urllib2,urllib,os,time
 
 def POST(url,data):
     formdata=urllib.urlencode(data)
@@ -55,8 +55,13 @@ sub_domain = "www"
 
 dns = dnspod(uname,password,"")
 while True:
-		if GetIP() != ip:
-				ip = GetIP()
-				re  = dns.update_record(sub_domain,ip)
-				sys.stdout.write("%s\r"%re)
+		try:
+				newip = GetIP()
+				if newip != ip:
+						ip = newip()
+						re  = dns.update_record(sub_domain,ip)
+						sys.stdout.write("%s\r"%re)
+		except:
+				pass
+
 		time.sleep(20)
