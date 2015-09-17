@@ -61,6 +61,8 @@ while True:
 						ip = newip
 						re  = dns.update_record(sub_domain,ip)
 						sys.stdout.write("%s\r"%re)
+						sys.stdout.flush()
 		except Exception,e:
 				sys.stdout.write("%s\n"%e)
+				sys.stdout.flush()
 		time.sleep(20)
