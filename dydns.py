@@ -58,9 +58,9 @@ while True:
 		try:
 				newip = GetIP()
 				if newip != ip:
-						ip = newip()
+						ip = newip
 						re  = dns.update_record(sub_domain,ip)
 						sys.stdout.write("%s\r"%re)
 		except Exception,e:
-				sys.stdout.write("%s\n",%e)
+				sys.stdout.write("%s\n"%e)
 		time.sleep(20)
