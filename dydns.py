@@ -12,7 +12,7 @@ def POST(url,data):
     return content
 
 def GetIP():
-		return POST("http://lab.hitoy.org/api/gettheip.php","")
+		return urllib2.urlopen("http://lab.hitoy.org/api/gettheip").read()
 
 
 class dnspod:
@@ -61,7 +61,6 @@ while True:
 						ip = newip()
 						re  = dns.update_record(sub_domain,ip)
 						sys.stdout.write("%s\r"%re)
-		except:
-				pass
-
+		except Exception,e:
+				sys.stdout.write("%s\n",%e)
 		time.sleep(20)
